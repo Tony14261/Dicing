@@ -27,7 +27,7 @@ bot = commands.Bot(intents=intents)
 #==========Slash commands==========
 @bot.slash_command(description="Roll a dice")
 async def roll(ctx: discord.Interaction):
-    response = "Look at that! It's `" + random.randint(1, 6) + "`"
+    response = "Look at that! It's `" + str(random.randint(1, 6)) + "`"
     await ctx.response(response)
 
 @bot.slash_command(description="Roll a dice")
