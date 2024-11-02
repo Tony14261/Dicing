@@ -18,12 +18,10 @@ server_thread.start()
 load_dotenv()
 TOKEN: Final[str] = os.getenv('APP_TOKEN')
 
-intents = discord.Intents.default()
+intents = discord.Intents()
 intents.messages = True
 intents.message_content = True
-intents.moderation = True
-intents.members = True
-intents.guilds = True
+intents.presences = True
 bot = commands.Bot(intents=intents)
 
 #==========Slash commands==========
