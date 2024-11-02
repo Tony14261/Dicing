@@ -30,15 +30,15 @@ async def roll(ctx: discord.ApplicationContext):
     response = "Look at that! It's `" + str(random.randint(1, 6)) + "`"
     await ctx.respond(response)
 
-@bot.slash_command(description="Roll a dice")
-async def roll_custom(ctx: discord.ApplicationContext, dices: int):
+@bot.slash_command(description="Roll a custom dice")
+async def roll_custom(ctx: discord.ApplicationContext, dices):
     try:
         dices = int(dices)
     except ValueError:
         await ctx.respond("Invalid number")
     if dices <= 1:
         await ctx.respond("Invalid dice value")
-    response = "Ooh! It's `" + random.randint(1, dices) + "`"
+    response = "Ooh! It's `" + str(random.randint(1, int(dices))) + "`"
     await ctx.respond(response)
 #==================================
 
