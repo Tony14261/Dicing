@@ -26,20 +26,20 @@ bot = commands.Bot(intents=intents)
 
 #==========Slash commands==========
 @bot.slash_command(description="Roll a dice")
-async def roll(ctx: discord.Interaction):
+async def roll(ctx: discord.ApplicationContext):
     response = "Look at that! It's `" + str(random.randint(1, 6)) + "`"
-    await ctx.response(response)
+    await ctx.respond(response)
 
 @bot.slash_command(description="Roll a dice")
-async def roll_custom(ctx: discord.Interaction, dices):
+async def roll_custom(ctx: discord.ApplicationContext, dices: int):
     try:
         dices = int(dices)
     except ValueError:
-        await ctx.response("Invalid number")
+        await ctx.respond("Invalid number")
     if dices <= 1:
-        await ctx.response("Invalid dice value")
+        await ctx.respond("Invalid dice value")
     response = "Ooh! It's `" + random.randint(1, dices) + "`"
-    await ctx.response(response)
+    await ctx.respond(response)
 #==================================
 
 
