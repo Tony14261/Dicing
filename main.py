@@ -25,9 +25,12 @@ intents.presences = True
 bot = commands.Bot(intents=intents)
 
 #==========Slash commands==========
+
+random_responses = ["Look at that, it's [] !", " Ooh, it's []!", "Hmm.. Looks like you rolled []!", "Let's say.. []!", "Lemme see. It's []!", "Dicing.. []!", "Rolling, rolling, []!"]
+
 @bot.slash_command(description="Roll a dice")
 async def roll(ctx: discord.ApplicationContext):
-    response = "Look at that! It's `" + str(random.randint(1, 6)) + "`"
+    response = random_responses[random.randint(0, len(random_responses) - 1)].replace("[]", "`" + str(random.randint(1, 6)) + "`")
     await ctx.respond(response)
 
 @bot.slash_command(description="Roll a custom dice")
@@ -38,7 +41,7 @@ async def roll_custom(ctx: discord.ApplicationContext, dices):
         await ctx.respond("Invalid number")
     if dices <= 1:
         await ctx.respond("Invalid dice value")
-    response = "Ooh! It's `" + str(random.randint(1, int(dices))) + "`"
+    response = random_responses[random.randint(0, len(random_responses) - 1)].replace("[]", "`" + str(random.randint(1, 6)) + "`")
     await ctx.respond(response)
 #==================================
 
@@ -48,6 +51,8 @@ async def roll_custom(ctx: discord.ApplicationContext, dices):
 async def on_ready():
     time.sleep(0.5)
     print(f'"{bot.user.name}" is now ready!')
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching))
+    await bot.change_presence(activity=discord.Activity(buttons=[{"label": "Open source", "url": "https://github.com/Tony14261/Dicing/"}, {"label": "Status", "url": "https://stats.uptimerobot.com/4CoTZy3oIe"}]))
 
 @bot.event
 async def on_connect():
