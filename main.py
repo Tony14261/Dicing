@@ -37,12 +37,13 @@ async def roll(ctx: discord.ApplicationContext):
 async def roll_custom(ctx: discord.ApplicationContext, dices):
     try:
         dices = int(dices)
+        if dices <= 1:
+            await ctx.respond("Invalid dice value")
+        else:
+            response = random_responses[random.randint(0, len(random_responses) - 1)].replace("[]", "`" + str(random.randint(1, dices)) + "`")
+            await ctx.respond(response)
     except ValueError:
         await ctx.respond("Invalid number")
-    if dices <= 1:
-        await ctx.respond("Invalid dice value")
-    response = random_responses[random.randint(0, len(random_responses) - 1)].replace("[]", "`" + str(random.randint(1, 6)) + "`")
-    await ctx.respond(response)
 #==================================
 
 
