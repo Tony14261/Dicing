@@ -1,3 +1,5 @@
+# The code is outdated and the project is merged to https://github.com/Tony14261/MicroMightyBot
+<br>
 # Dicing
 An open source discord bot
 (Under CC-BY-NC-SA ) <br>
